@@ -9,6 +9,9 @@ for more options.
 
 #define ENCODER_RESOLUTIONS { 4, 2 }
 
+// Configure the global tapping term (default: 200ms)
+#define TAPPING_TERM 180 
+
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
 
