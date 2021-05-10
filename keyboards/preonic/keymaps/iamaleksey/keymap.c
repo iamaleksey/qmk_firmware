@@ -62,6 +62,11 @@ enum preonic_keycodes {
 #define ALT_I LALT_T(KC_I)
 #define CTL_O RCTL_T(KC_O)
 
+
+// Layer switch / mod taps
+#define LWR_TAB LT(_LOWER, KC_TAB)
+#define RSE_ENT LT(_RAISE, KC_ENT)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -72,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RShift|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |LCtrl | LAlt | LGUI |Lower |Space |Enter |Raise | RGUI | RAlt |RCtrl |      |
+ * |      |LCtrl | LAlt | LGUI |LwrTab|Space |Bksp  |RseEnt| RGUI | RAlt |RCtrl |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
@@ -82,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
   HYPR_ESC,CTL_A,   ALT_S,   GUI_D,   SFT_F,   KC_G,    KC_H,    SFT_J,   GUI_K,   ALT_L,   CTL_SCLN,KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  _______, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_ENT,  RAISE,   KC_RGUI, KC_RALT, KC_RCTL, _______ 
+  _______, KC_LCTL, KC_LALT, KC_LGUI, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, KC_RGUI, KC_RALT, KC_RCTL, _______
 ),
 
 /* Colemak
@@ -95,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |RShift|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |LCtrl | LAlt | LGUI |Lower |Space |Enter |Raise | RGUI | RAlt |RCtrl |      |
+ * |      |LCtrl | LAlt | LGUI |LwrTab|Space |Bksp  |RseEnt| RGUI | RAlt |RCtrl |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_preonic_grid(
@@ -103,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
   HYPR_ESC,CTL_A,   ALT_R,   GUI_S,   SHFT_T,  KC_G,    KC_M,    SFT_N,   GUI_E,   ALT_I,   CTL_O,   KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_LSFT,
-  _______, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_ENT,  RAISE,   KC_RGUI, KC_RALT, KC_RCTL, _______ 
+  _______, KC_LCTL, KC_LALT, KC_LGUI, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, KC_RGUI, KC_RALT, KC_RCTL, _______
 ),
 
 /* WASD 
@@ -114,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RShift|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |LCtrl | LAlt | LGUI |Lower |Space |Enter |Raise | RGUI | RAlt |RCtrl |      |
+ * |      |LCtrl | LAlt | LGUI |LwrTab|Space |Bksp  |RseEnt| RGUI | RAlt |RCtrl |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_WASD] = LAYOUT_preonic_grid(
@@ -124,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-  _______, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_ENT,  RAISE,   KC_RGUI, KC_RALT, KC_RCTL, _______ 
+  _______, KC_LCTL, KC_LALT, KC_LGUI, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, KC_RGUI, KC_RALT, KC_RCTL, _______
 ),
 
 /* Lower
