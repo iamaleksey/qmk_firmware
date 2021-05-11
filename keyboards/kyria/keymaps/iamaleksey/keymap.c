@@ -17,31 +17,86 @@
 
 enum layers {
     _QWERTY = 0,
+    _COLEMAK,
     _LOWER,
     _RAISE,
     _ADJUST
 };
+
+#define ENCODER_DIRECTION_FLIP
+
+// Hyper-Esc
+#define HYPR_ESC HYPR_T(KC_ESC)
+
+// Left-hand home row mods (QWERTY)
+#define CTL_A LCTL_T(KC_A)
+#define ALT_S LALT_T(KC_S)
+#define GUI_D LGUI_T(KC_D)
+#define SFT_F LSFT_T(KC_F)
+
+// Right-hand home row mods (QWERTY)
+#define SFT_J RSFT_T(KC_J)
+#define GUI_K RGUI_T(KC_K)
+#define ALT_L LALT_T(KC_L)
+#define CTL_SCLN RCTL_T(KC_SCLN)
+
+// Left-hand home row mods (COLEMAK)
+#define CTL_A LCTL_T(KC_A)
+#define ALT_R LALT_T(KC_R)
+#define GUI_S LGUI_T(KC_S)
+#define SHFT_T LSFT_T(KC_T)
+
+// Right-hand home row mods (COLEMAK)
+#define SFT_N RSFT_T(KC_N)
+#define GUI_E RGUI_T(KC_E)
+#define ALT_I LALT_T(KC_I)
+#define CTL_O RCTL_T(KC_O)
+
+
+// Layer switch / mod taps
+#define LWR_TAB LT(_LOWER, KC_TAB)
+#define RSE_ENT LT(_RAISE, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |RAIS/ESC|   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  | \   |
+ * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  ` ~   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |Ctrl/BS |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |Esc/HYPR|   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |LShift|LShift|  |LShift|LShift|   N  |   M  | ,  < | . >  | /  ? |  - _   |
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | . >  | /  ? | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | GUI  | Del  | Enter| Space| Esc  |  | Enter| Space| Tab  | Bksp | AltGr|
- *                        |      |      | Alt  | Lower| Raise|  | Lower| Raise|      |      |      |
+ *                        | Mute | LAlt | Tab  | Space|      |  |      | Bksp | Enter| RAlt |      |
+ *                        |      |      | Lower|      |      |  |      |      | Raise|      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-      LT(_RAISE, KC_ESC),       KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PIPE,
-      MT(MOD_LCTL, KC_BSPC),   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      KC_LSFT,                 KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_LSFT,   KC_LSFT, KC_LSFT, KC_LSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-              KC_LGUI, KC_DEL, MT(MOD_LALT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), KC_TAB,  KC_BSPC, KC_RALT
+      KC_TAB,   KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_GRV,
+      HYPR_ESC, CTL_A,  ALT_S,  GUI_D,   SFT_F,   KC_G,                                         KC_H,    SFT_J,   GUI_K,   ALT_L,   CTL_SCLN,KC_QUOT,
+      KC_LSFT,  KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,   _______, _______,   _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                                KC_MUTE, KC_LALT, LWR_TAB, KC_SPC, _______,   _______, KC_BSPC, RSE_ENT, KC_RALT, _______
+    ),
+/*
+ * Layer template
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_COLEMAK] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
  * Lower Layer: Symbols
