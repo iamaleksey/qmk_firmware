@@ -246,16 +246,23 @@ static void render_status(void) {
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
+
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("QWERTY\n"), false);
-            break;
         case _COLEMAK:
-            oled_write_P(PSTR("Colemak-DHm\n"), false);
-            break;
         case _WASD:
-            oled_write_P(PSTR("WASD\n"), false);
-            break;
+	    switch (get_highest_layer(default_layer_state)) {
+		case _QWERTY:
+		    oled_write_P(PSTR("QWERTY\n"), false);
+		    break;
+		case _COLEMAK:
+		    oled_write_P(PSTR("Colemak-DHm\n"), false);
+		    break;
+		case _WASD:
+		    oled_write_P(PSTR("WASD\n"), false);
+		    break;
+	    }
+	    break;
         case _LOWER:
             oled_write_P(PSTR("Lower\n"), false);
             break;
@@ -265,8 +272,6 @@ static void render_status(void) {
         case _ADJUST:
             oled_write_P(PSTR("Adjust\n"), false);
             break;
-        default:
-            oled_write_P(PSTR("Undefined\n"), false);
     }
 
     // Host Keyboard LED Status
