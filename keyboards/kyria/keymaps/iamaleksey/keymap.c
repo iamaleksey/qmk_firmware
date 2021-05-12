@@ -83,20 +83,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  Alt Base Layer: Colemak-DHm
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  \ |   |
+ * |        |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |  \ |   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |Esc/HYPR|   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |Esc/HYPR|   A  |   R  |   S  |   T  |   G  |                              |   M  |   N  |   E  |   I  |   O  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | .  > | /  ? |        |
+ * |        |   Z  |   X  |   C  |   D  |   V  |      |      |  |      |      |   K  |   H  | ,  < | .  > | /  ? |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Mute |      | Tab  | Space|      |  |      | Bksp | Enter|      |      |
  *                        |      |      | Lower|      |      |  |      |      | Raise|      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_COLEMAK] = LAYOUT(
-      _______,   KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                                       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-      HYPR_ESC,  CTL_A,  ALT_S,  GUI_D,   SFT_F,   KC_G,                                       KC_H,    SFT_J,   GUI_K,   ALT_L,   CTL_SCLN,KC_QUOT,
-      _______,   KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,   _______, _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+      _______,   KC_Q,   KC_W,   KC_F,    KC_P,    KC_B,                                       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
+      HYPR_ESC,  CTL_A,  ALT_R,  GUI_S,   SFT_T,   KC_G,                                       KC_M,    SFT_N,   GUI_E,   ALT_I,   CTL_O,   KC_QUOT,
+      _______,   KC_Z,   KC_X,   KC_C,    KC_D,    KC_V,   _______, _______, _______, _______, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, _______,
                                  KC_MUTE, _______, LWR_TAB, KC_SPC, _______, _______, KC_BSPC, RSE_ENT, _______, _______
     ),
 
