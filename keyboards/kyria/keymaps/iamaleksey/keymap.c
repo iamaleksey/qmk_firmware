@@ -30,31 +30,28 @@ enum layers {
 #define HYPR_ESC HYPR_T(KC_ESC)
 
 // Home row mods (QWERTY)
-#define CTL_A LCTL_T(KC_A)
-#define ALT_S LALT_T(KC_S)
-#define GUI_D LGUI_T(KC_D)
-#define SFT_F LSFT_T(KC_F)
-
-#define SFT_J RSFT_T(KC_J)
-#define GUI_K RGUI_T(KC_K)
-#define ALT_L LALT_T(KC_L)
-#define CTL_SCLN RCTL_T(KC_SCLN)
+#define LCTL_A    LCTL_T(KC_A)
+#define LALT_S    LALT_T(KC_S)
+#define LGUI_D    LGUI_T(KC_D)
+#define SHFT_F    LSFT_T(KC_F)
+#define RSFT_J    RSFT_T(KC_J)
+#define RGUI_K    RGUI_T(KC_K)
+#define RALT_L    LALT_T(KC_L)
+#define RCTL_SCLN RCTL_T(KC_SCLN)
 
 // Home row mods (COLEMAK)
-#define CTL_A LCTL_T(KC_A)
-#define ALT_R LALT_T(KC_R)
-#define GUI_S LGUI_T(KC_S)
+#define LCTL_A LCTL_T(KC_A)
+#define LALT_R LALT_T(KC_R)
+#define LGUI_S LGUI_T(KC_S)
 #define SHFT_T LSFT_T(KC_T)
+#define RSFT_N RSFT_T(KC_N)
+#define RGUI_E RGUI_T(KC_E)
+#define RALT_I LALT_T(KC_I)
+#define RCTL_O RCTL_T(KC_O)
 
-#define SFT_N RSFT_T(KC_N)
-#define GUI_E RGUI_T(KC_E)
-#define ALT_I LALT_T(KC_I)
-#define CTL_O RCTL_T(KC_O)
-
-// Layer switch / mod taps
+// Layer switching / mod taps
 #define LWR_TAB LT(_LOWER, KC_TAB)
 #define RSE_ENT LT(_RAISE, KC_ENT)
-
 #define QWERTY  DF(_QWERTY)
 #define COLEMK  DF(_COLEMAK)
 #define WASD    DF(_WASD)
@@ -76,9 +73,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-      _______,   KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                                       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-      HYPR_ESC,  CTL_A,  ALT_S,  GUI_D,   SFT_F,   KC_G,                                       KC_H,    SFT_J,   GUI_K,   ALT_L,   CTL_SCLN,KC_QUOT,
-      _______,   KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,   _______, _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+      _______,   KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                                       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSLS,
+      HYPR_ESC,  LCTL_A, LALT_S, LGUI_D,  SHFT_F,  KC_G,                                       KC_H,    RSFT_J,  RGUI_K,  RALT_L,  RCTL_SCLN,KC_QUOT,
+      _______,   KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,   _______, _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  _______,
                                  KC_MUTE, _______, LWR_TAB, KC_SPC, _______, _______, KC_BSPC, RSE_ENT, _______, _______
     ),
 
@@ -98,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_COLEMAK] = LAYOUT(
       _______,   KC_Q,   KC_W,   KC_F,    KC_P,    KC_B,                                       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
-      HYPR_ESC,  CTL_A,  ALT_R,  GUI_S,   SFT_T,   KC_G,                                       KC_M,    SFT_N,   GUI_E,   ALT_I,   CTL_O,   KC_QUOT,
+      HYPR_ESC,  LCTL_A, LALT_R, LGUI_S,  SHFT_T,  KC_G,                                       KC_M,    RSFT_N,  RGUI_E,  RALT_I,  RCTL_O,  KC_QUOT,
       _______,   KC_Z,   KC_X,   KC_C,    KC_D,    KC_V,   _______, _______, _______, _______, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, _______,
                                  KC_MUTE, _______, LWR_TAB, KC_SPC, _______, _______, KC_BSPC, RSE_ENT, _______, _______
     ),
