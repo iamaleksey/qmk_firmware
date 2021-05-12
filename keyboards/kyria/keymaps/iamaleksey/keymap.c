@@ -18,6 +18,7 @@
 enum layers {
     _QWERTY = 0,
     _COLEMAK,
+    _WASD,
     _LOWER,
     _RAISE,
     _ADJUST
@@ -28,25 +29,23 @@ enum layers {
 // Hyper-Esc
 #define HYPR_ESC HYPR_T(KC_ESC)
 
-// Left-hand home row mods (QWERTY)
+// Home row mods (QWERTY)
 #define CTL_A LCTL_T(KC_A)
 #define ALT_S LALT_T(KC_S)
 #define GUI_D LGUI_T(KC_D)
 #define SFT_F LSFT_T(KC_F)
 
-// Right-hand home row mods (QWERTY)
 #define SFT_J RSFT_T(KC_J)
 #define GUI_K RGUI_T(KC_K)
 #define ALT_L LALT_T(KC_L)
 #define CTL_SCLN RCTL_T(KC_SCLN)
 
-// Left-hand home row mods (COLEMAK)
+// Home row mods (COLEMAK)
 #define CTL_A LCTL_T(KC_A)
 #define ALT_R LALT_T(KC_R)
 #define GUI_S LGUI_T(KC_S)
 #define SHFT_T LSFT_T(KC_T)
 
-// Right-hand home row mods (COLEMAK)
 #define SFT_N RSFT_T(KC_N)
 #define GUI_E RGUI_T(KC_E)
 #define ALT_I LALT_T(KC_I)
@@ -55,6 +54,10 @@ enum layers {
 // Layer switch / mod taps
 #define LWR_TAB LT(_LOWER, KC_TAB)
 #define RSE_ENT LT(_RAISE, KC_ENT)
+
+#define QWERTY  DF(_QWERTY)
+#define COLEMK  DF(_COLEMAK)
+#define WASD    DF(_WASD)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -101,6 +104,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
+ * Alt Base Layer: WASD for gaming (vanilla QWERTY without mod-taps)
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |   Tab  |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  \ |   |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |   Esc  |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |  Shift |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | .  > | /  ? |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        | Mute |      | Tab  | Space|      |  |      | Bksp | Enter|      |      |
+ *                        |      |      | Lower|      |      |  |      |      | Raise|      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_WASD] = LAYOUT(
+      KC_TAB,    KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                                       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+      KC_ESC,    KC_A,   KC_S,   KC_D,    KC_F,    KC_G,                                       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+      KC_LSFT,   KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,   _______, _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+                                 KC_MUTE, _______, LWR_TAB, KC_SPC, _______, _______, KC_BSPC, RSE_ENT, _______, _______
+    ),
+
+/*
  * Lower Layer: symbols and numbers
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -143,12 +167,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
- * Adjust Layer: function keys and RGB
+ * Adjust Layer: function keys, layouts, and RGB
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        | F1   |  F2  | F3   | F4   | F5   |                              | F6   | F7   |  F8  | F9   | F10  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |      |      |      | F11  | F12  |        |
+ * |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |QWERTY|COLEMK| WASD | F11  | F12  |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      | SAD  | HUD  | VAD  | RMOD |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -158,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_ADJUST] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, _______, KC_F11,  KC_F12,  _______,
+      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     QWERTY,  COLEMK,  WASD,    KC_F11,  KC_F12,  _______,
       _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -221,13 +245,19 @@ static void render_qmk_logo(void) {
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("Kyria rev1.0\n\n"), false);
+    oled_write_P(PSTR("Kyria rev1.3\n\n"), false);
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("Default\n"), false);
+            oled_write_P(PSTR("QWERTY\n"), false);
+            break;
+        case _COLEMAK:
+            oled_write_P(PSTR("Colemak-DHm\n"), false);
+            break;
+        case _WASD:
+            oled_write_P(PSTR("WASD\n"), false);
             break;
         case _LOWER:
             oled_write_P(PSTR("Lower\n"), false);
