@@ -24,8 +24,6 @@ enum layers {
     _ADJUST
 };
 
-#define ENCODER_DIRECTION_FLIP
-
 // Home row mods (QWERTY)
 #define LCTL_A    LCTL_T(KC_A)
 #define LOPT_S    LOPT_T(KC_S)
