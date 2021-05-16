@@ -211,7 +211,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-	return OLED_ROTATION_180;
+    return OLED_ROTATION_180;
 }
 
 static void render_kyria_logo(void) {
@@ -289,14 +289,35 @@ void oled_task_user(void) {
 #endif
 
 #ifdef ENCODER_ENABLE
-void left_encoder_update(uint8_t layer, bool clockwise) {
+void encoder_scroll(bool clockwise) {
     if (clockwise) { tap_code(KC_PGDN); }
     else           { tap_code(KC_PGUP); }
 }
 
-void right_encoder_update(uint8_t layer, bool clockwise) {
+void encoder_control_history(bool clockwise) {
+    if (clockwise) { tap_code16(LCTL(KC_R)); }
+    else           { tap_code  (KC_U);       }
+}
+
+void encoder_volume_control(bool clockwise) {
     if (clockwise) { tap_code(KC_VOLU); }
     else           { tap_code(KC_VOLD); }
+}
+
+void left_encoder_update(uint8_t layer, bool clockwise) {
+    switch (layer) {
+        case _QWERTY:
+	case _COLEMAK:
+            encoder_scroll(clockwise);
+	    break;
+	case _RAISE:
+            encoder_control_history(clockwise);
+            break;
+    }
+}
+
+void right_encoder_update(uint8_t layer, bool clockwise) {
+    encoder_volume_control(clockwise);
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
