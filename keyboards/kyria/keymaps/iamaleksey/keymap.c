@@ -289,22 +289,19 @@ void oled_task_user(void) {
 #endif
 
 #ifdef ENCODER_ENABLE
+void left_encoder_update(uint8_t layer, bool clockwise) {
+    if (clockwise) { tap_code(KC_PGDN); }
+    else           { tap_code(KC_PGUP); }
+}
+
+void right_encoder_update(uint8_t layer, bool clockwise) {
+    if (clockwise) { tap_code(KC_VOLU); }
+    else           { tap_code(KC_VOLD); }
+}
+
 void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        // Volume control
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    }
-    else if (index == 1) {
-        // Page up/Page down
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
-        }
-    }
+    uint8_t layer = get_highest_layer(layer_state);
+    if      (index == 0) {  left_encoder_update(layer, clockwise); }
+    else if (index == 1) { right_encoder_update(layer, clockwise); }
 }
 #endif
