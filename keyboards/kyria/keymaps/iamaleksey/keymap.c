@@ -294,30 +294,31 @@ void encoder_scroll(bool clockwise) {
     else           { tap_code(KC_PGUP); }
 }
 
-void encoder_control_history(bool clockwise) {
+void encoder_undo_redo(bool clockwise) {
     if (clockwise) { tap_code16(LCTL(KC_R)); }
     else           { tap_code  (KC_U);       }
 }
 
-void encoder_volume_control(bool clockwise) {
-    if (clockwise) { tap_code(KC_VOLU); }
-    else           { tap_code(KC_VOLD); }
+void encoder_zoom_in_out(bool clockwise) {
+    if (clockwise) { tap_code16(LCMD(KC_PLUS)); }
+    else           { tap_code16(LCMD(KC_MINS)); }
 }
 
 void left_encoder_update(uint8_t layer, bool clockwise) {
     switch (layer) {
         case _QWERTY:
-	case _COLEMAK:
+        case _COLEMAK:
+        case _WASD:
             encoder_scroll(clockwise);
-	    break;
-	case _RAISE:
-            encoder_control_history(clockwise);
+            break;
+        case _RAISE:
+            encoder_undo_redo(clockwise);
             break;
     }
 }
 
 void right_encoder_update(uint8_t layer, bool clockwise) {
-    encoder_volume_control(clockwise);
+    encoder_zoom_in_out(clockwise);
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
