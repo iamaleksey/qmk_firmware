@@ -37,7 +37,7 @@ enum layers {
 #define ROPT_L    LOPT_T(KC_L)
 #define RCTL_SCLN RCTL_T(KC_SCLN)
 
-// Home row mods (COLEMAK)
+// Home row mods (Colemak-DHm)
 #define LCTL_A LCTL_T(KC_A)
 #define LOPT_R LOPT_T(KC_R)
 #define LCMD_S LCMD_T(KC_S)
@@ -55,6 +55,10 @@ enum layers {
 #define QWERTY  DF(_QWERTY)
 #define COLEMK  DF(_COLEMAK)
 #define WASD    DF(_WASD)
+
+// Beginning of line / end of line
+#define BOL LCMD(KC_LEFT)
+#define EOL LCMD(KC_RGHT)
 
 // Prev tab / next tab
 #define PRV_TAB LCTL(LSFT(KC_TAB))
@@ -154,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |      | Prev | Play | Next |      |                              | Left | Down |  Up  | Right|  F11 |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      | VolDn| Mute | VolUp|      |      |      |  |      |      |      |      |      |      |  F12 |        |
+ * |        |      | VolDn| Mute | VolUp|      |      |      |  |      |      | BOL  | PgDn | PgUp | EOL  |  F12 |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -163,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, _______,
       _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_F11, _______,
-      _______, _______, KC_VOLD, KC_MUTE, KC_VOLU ,_______, _______, _______, _______, _______, _______, _______, _______, _______, KC_F12, _______,
+      _______, _______, KC_VOLD, KC_MUTE, KC_VOLU ,_______, _______, _______, _______, _______, BOL,     KC_PGDN, KC_PGUP, EOL,     KC_F12, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
