@@ -250,10 +250,10 @@ static void render_qmk_logo(void) {
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("Kyria rev1.4\n\n"), false);
+    oled_write_P(PSTR("\n  kyria   rev 1.4.42\n\n"), false);
 
     // Host Keyboard Layer Status
-    oled_write_P(PSTR("Layer: "), false);
+    oled_write_P(PSTR("  layer   "), false);
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
@@ -261,24 +261,24 @@ static void render_status(void) {
         case _WASD:
             switch (get_highest_layer(default_layer_state)) {
                 case _QWERTY:
-                    oled_write_P(PSTR("QWERTY\n"), false);
+                    oled_write_P(PSTR("qwerty\n"), false);
                     break;
                 case _COLEMAK:
-                    oled_write_P(PSTR("Colemak-DHm\n"), false);
+                    oled_write_P(PSTR("colemak-dh\n"), false);
                     break;
                 case _WASD:
-                    oled_write_P(PSTR("WASD\n"), false);
+                    oled_write_P(PSTR("wasd\n"), false);
                     break;
             }
             break;
         case _LOWER:
-            oled_write_P(PSTR("Lower\n"), false);
+            oled_write_P(PSTR("lower\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("Raise\n"), false);
+            oled_write_P(PSTR("raise\n"), false);
             break;
         case _ADJUST:
-            oled_write_P(PSTR("Adjust\n"), false);
+            oled_write_P(PSTR("adjust\n"), false);
             break;
     }
 }
