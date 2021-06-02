@@ -1,1 +1,2 @@
-SRC += muse.c
+CONSOLE_ENABLE = no
+EXTRAKEY_ENABLE = yes
