@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      | Vol- | Mute | Vol+ |      |      |      |  |      |      | BOL  | PgDn | PgUp | EOL  |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        | Mute |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -165,14 +165,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
       _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
       _______, _______, KC_VOLD, KC_MUTE, KC_VOLU ,_______, _______, _______, _______, _______, BOL,     KC_PGDN, KC_PGUP, EOL,     _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+                                 KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
 /*
  * Adjust Layer: RGB and base layer switching, function keys
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  |  F10 |        |
+ * | Reset  |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  |  F10 |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | Togl | Sat+ | Hue+ | Bri+ | Mode+|                              |      |QWERTY|COLEMK| WASD |  F11 |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -183,7 +183,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_ADJUST] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, QWERTY,  COLEMAK, WASD,    KC_F11,  _______,
       _______, RGB_TOG, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______, _______, KC_F12,  _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -247,7 +247,7 @@ static void render_qmk_logo(void) {
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("\n  kyria   rev 1.4.43\n\n"), false);
+    oled_write_P(PSTR("\n  kyria   rev 1.4.44\n\n"), false);
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("  layer   "), false);
@@ -290,12 +290,17 @@ void oled_task_user(void) {
 #endif
 
 #ifdef ENCODER_ENABLE
-void encoder_scroll(bool clockwise) {
+void encoder_scroll_down_up(bool clockwise) {
     if (clockwise) { tap_code(KC_PGDN); }
     else           { tap_code(KC_PGUP); }
 }
 
-void encoder_undo_redo(bool clockwise) {
+void encoder_volume_up_down(bool clockwise) {
+    if (clockwise) { tap_code(KC_VOLU); }
+    else           { tap_code(KC_VOLD); }
+}
+
+void encoder_history_redo_undo(bool clockwise) {
     if (clockwise) { tap_code16(LCTL(KC_R)); }
     else           { tap_code  (KC_U);       }
 }
@@ -307,19 +312,22 @@ void encoder_zoom_in_out(bool clockwise) {
 
 void left_encoder_update(uint8_t layer, bool clockwise) {
     switch (layer) {
-        case _QWERTY:
-        case _COLEMAK:
-        case _WASD:
-            encoder_scroll(clockwise);
-            break;
         case _RAISE:
-            encoder_undo_redo(clockwise);
+            encoder_volume_up_down(clockwise);
             break;
+        default:
+            encoder_scroll_down_up(clockwise);
     }
 }
 
 void right_encoder_update(uint8_t layer, bool clockwise) {
-    encoder_zoom_in_out(clockwise);
+    switch (layer) {
+        case _LOWER:
+            encoder_zoom_in_out(clockwise);
+            break;
+        default:
+            encoder_history_redo_undo(clockwise);
+    }
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
