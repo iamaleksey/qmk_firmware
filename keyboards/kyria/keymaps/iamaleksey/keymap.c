@@ -301,7 +301,7 @@ void encoder_undo_redo(bool clockwise) {
 }
 
 void encoder_zoom_in_out(bool clockwise) {
-    if (clockwise) { tap_code16(LCMD(KC_PLUS)); }
+    if (clockwise) { tap_code16(LCMD(KC_EQL )); }
     else           { tap_code16(LCMD(KC_MINS)); }
 }
 
