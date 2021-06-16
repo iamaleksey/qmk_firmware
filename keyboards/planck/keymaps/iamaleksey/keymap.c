@@ -4,7 +4,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Colemak-DHm
  * ,-----------------------------------------------------------------------------------.
- * |      |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  | ;  : | \  | |
+ * |      |Q..Esc|   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  | ;  : | \  | |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc `| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -14,7 +14,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_ortho_4x12(
-    XXXXXXX, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
+    XXXXXXX, Q_ESC,   KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
     KC_GESC, LCTL_A,  LOPT_R,  LCMD_S,  SHFT_T,  KC_G,    KC_M,    RSFT_N,  RCMD_E,  ROPT_I,  RCTL_O,  KC_QUOT,
     XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
  * ,-----------------------------------------------------------------------------------.
- * |      |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | \  | |
+ * |      |Q..Esc|   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | \  | |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc `| A/Ctl| S/Opt| D/Cmd| F/Sft|   G  |   H  | J/Sft| K/Cmd| L/Opt|;:/Ctl| '  " |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
-    XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+    XXXXXXX, Q_ESC,   KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
     KC_GESC, LCTL_A,  LOPT_S,  LCMD_D,  SHFT_F,  KC_G,    KC_H,    RSFT_J,  RCMD_K,  ROPT_L,  CTL_SCLN,KC_QUOT,
     XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_WASD] = LAYOUT_ortho_4x12(
-    KC_TAB,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    KC_TAB,  KC_Q,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, KC_A,    KC_S,    KC_D,    KC_F,    _______, _______, KC_J,    KC_K,    KC_L,    KC_SCLN, _______,
     KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_ENT,
     XXXXXXX, KC_LCTL, KC_LOPT, KC_LCMD, LOWER,   _______, _______, RAISE,   KC_RCMD, KC_ROPT, KC_RCTL, XXXXXXX
@@ -115,3 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC)
+};
