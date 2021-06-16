@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |LwrTab| Space| Bspc |RseEnt|      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_COLEMAK] = LAYOUT_planck_grid(
+[_COLEMAK] = LAYOUT_ortho_4x12(
     XXXXXXX, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
     KC_GESC, LCTL_A,  LOPT_R,  LCMD_S,  SHFT_T,  KC_G,    KC_M,    RSFT_N,  RCMD_E,  ROPT_I,  RCTL_O,  KC_QUOT,
     XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |LwrTab| Space| Bspc |RseEnt|      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_QWERTY] = LAYOUT_planck_grid(
+[_QWERTY] = LAYOUT_ortho_4x12(
     XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
     KC_GESC, LCTL_A,  LOPT_S,  LCMD_D,  SHFT_F,  KC_G,    KC_H,    RSFT_J,  RCMD_K,  ROPT_L,  CTL_SCLN,KC_QUOT,
     XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      | Ctl  | Opt  | Cmd  | Lower| Space| Bspc | Raise| Cmd  | Opt  | Ctl  |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_WASD] = LAYOUT_planck_grid(
+[_WASD] = LAYOUT_ortho_4x12(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
     KC_GESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_LOWER] = LAYOUT_planck_grid(
+[_LOWER] = LAYOUT_ortho_4x12(
     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
     _______, KC_EXLM, KC_PLUS, KC_LPRN, KC_RPRN, KC_HASH, KC_PIPE, KC_MINS, KC_EQL,  KC_UNDS, KC_ASTR, _______,
     _______, KC_DLR,  KC_AT,   KC_LCBR, KC_RCBR, KC_AMPR, KC_GRV,  KC_LBRC, KC_RBRC, KC_PERC, KC_CIRC, _______,
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_RAISE] = LAYOUT_planck_grid(
+[_RAISE] = LAYOUT_ortho_4x12(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
     _______, _______, KC_VOLD, KC_MUTE, KC_VOLU, _______, _______, _______, _______, _______, _______, _______,
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_ADJUST] = LAYOUT_planck_grid(
+[_ADJUST] = LAYOUT_ortho_4x12(
     _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
     _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD, _______, QWERTY,  COLEMAK, WASD,    KC_F11,  _______,
     _______, RGB_TOG, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,_______, _______, _______, _______, KC_F12,  _______,
