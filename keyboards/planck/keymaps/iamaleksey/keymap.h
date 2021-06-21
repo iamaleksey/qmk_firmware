@@ -6,11 +6,6 @@ enum layers { _COLEMAK, _QWERTY, _WASD, _LOWER, _RAISE, _ADJUST };
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
 
-enum key_codes { CAPS_WRD = SAFE_RANGE, COLEMAK, QWERTY, WASD };
-
-enum dances { _Q_ESC };
-#define Q_ESC TD(_Q_ESC)
-
 // Home row mods (Colemak-DHm)
 #define LCTL_A LCTL_T(KC_A)
 #define LOPT_R LOPT_T(KC_R)
@@ -31,7 +26,15 @@ enum dances { _Q_ESC };
 #define ROPT_L ROPT_T(KC_L)
 #define CTL_SCLN RCTL_T(KC_SCLN)
 
+// Custom key codes
+enum key_codes { CAPS_WRD = SAFE_RANGE, COLEMAK, QWERTY, WASD };
+
 // CAPS_WRD
 bool caps_word_on;
 void caps_word_enable(void);
 void caps_word_disable(void);
+
+// Tap dances
+enum dances { _TD_Q, _TD_DOT };
+#define TD_Q   TD(_TD_Q)
+#define TD_DOT TD(_TD_DOT)
