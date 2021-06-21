@@ -14,9 +14,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_ortho_4x12(
-    XXXXXXX, Q_ESC,   KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
+    XXXXXXX, TD_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
     KC_GESC, LCTL_A,  LOPT_R,  LCMD_S,  SHFT_T,  KC_G,    KC_M,    RSFT_N,  RCMD_E,  ROPT_I,  RCTL_O,  KC_QUOT,
-    XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, CAPS_WRD,
+    XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, TD_DOT,  KC_SLSH, CAPS_WRD,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
@@ -32,9 +32,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
-    XXXXXXX, Q_ESC,   KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+    XXXXXXX, TD_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
     KC_GESC, LCTL_A,  LOPT_S,  LCMD_D,  SHFT_F,  KC_G,    KC_H,    RSFT_J,  RCMD_K,  ROPT_L,  CTL_SCLN,KC_QUOT,
-    XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, CAPS_WRD,
+    XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, TD_DOT,  KC_SLSH, CAPS_WRD,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC,  KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
@@ -115,10 +115,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC)
-};
 
 // CAPS_WORD: A "smart" Caps Lock key that only capitalizes the next identifier you type
 // and then toggles off Caps Lock automatically when you're done.
@@ -210,3 +206,48 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 }
+
+// Tap dances
+void sentence_end(qk_tap_dance_state_t *state, void *user_data) {
+    switch (state->count) {
+    // Double tapping TD_DOT produces
+    // ". <one-shot-shift>" i.e. dot, space and capitalize next letter.
+    // This helps to quickly end a sentence and begin another one
+    // without having to hit shift.
+    case 2:
+	/* Check that Shift is inactive */
+	if (!(get_mods() & MOD_MASK_SHIFT)) {
+	    tap_code(KC_SPC);
+	    /* Internal code of OSM(MOD_LSFT) */
+	    add_oneshot_mods(MOD_BIT(KC_LSHIFT));
+
+	} else {
+	    // send ">" (KC_DOT + shift → ">")
+	    tap_code(KC_DOT);
+	}
+	break;
+
+    // Since `sentence_end` is called on each tap
+    // and not at the end of the tapping term,
+    // the third tap needs to cancel the effects
+    // of the double tap in order to get the expected
+    // three dots ellipsis.
+    case 3:
+	// remove the added space of the double tap case
+	tap_code(KC_BSPC);
+	// replace the space with a second dot
+	tap_code(KC_DOT);
+	// tap the third dot
+	tap_code(KC_DOT);
+	break;
+
+    // send KC_DOT on every normal tap of TD_DOT
+    default:
+	tap_code(KC_DOT);
+    }
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [_TD_Q]   = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC),
+    [_TD_DOT] = ACTION_TAP_DANCE_FN_ADVANCED(sentence_end, NULL, NULL)
+};
