@@ -3,11 +3,10 @@
 enum layers { _COLEMAK, _QWERTY, _WASD, _LOWER, _RAISE, _ADJUST };
 #define LWR_TAB LT(_LOWER, KC_TAB)
 #define RSE_ENT LT(_RAISE, KC_ENT)
-#define COLEMAK DF(_COLEMAK)
-#define QWERTY  DF(_QWERTY)
-#define WASD    DF(_WASD)
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
+
+enum key_codes { CAPS_WRD = SAFE_RANGE, COLEMAK, QWERTY, WASD };
 
 enum dances { _Q_ESC };
 #define Q_ESC TD(_Q_ESC)
@@ -31,3 +30,8 @@ enum dances { _Q_ESC };
 #define RCMD_K RCMD_T(KC_K)
 #define ROPT_L ROPT_T(KC_L)
 #define CTL_SCLN RCTL_T(KC_SCLN)
+
+// CAPS_WRD
+bool caps_word_on;
+void caps_word_enable(void);
+void caps_word_disable(void);
