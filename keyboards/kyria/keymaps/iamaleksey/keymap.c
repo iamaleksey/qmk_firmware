@@ -179,3 +179,19 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     else if (index == 1) { right_encoder_update(layer, clockwise); }
 }
 #endif
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case COLEMAK:
+        set_single_persistent_default_layer(_COLEMAK);
+        return false;
+    case QWERTY:
+        set_single_persistent_default_layer(_QWERTY);
+        return false;
+    case WASD:
+        set_single_persistent_default_layer(_WASD);
+        return false;
+    }
+
+    return true;
+}

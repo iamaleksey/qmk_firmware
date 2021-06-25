@@ -9,6 +9,12 @@ enum layers {
     _ADJUST
 };
 
+enum keycodes {
+    COLEMAK = SAFE_RANGE,
+    QWERTY,
+    WASD
+};
+
 // Home row mods (Colemak-DHm)
 #define A_LCTL LCTL_T(KC_A)
 #define R_LOPT LOPT_T(KC_R)
@@ -34,9 +40,6 @@ enum layers {
 #define RSE_ENT LT(_RAISE, KC_ENT)
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
-#define COLEMAK DF(_COLEMAK)
-#define QWERTY  DF(_QWERTY)
-#define WASD    DF(_WASD)
 
 // Beginning of line / end of line
 #define BOL LCMD(KC_LEFT)
