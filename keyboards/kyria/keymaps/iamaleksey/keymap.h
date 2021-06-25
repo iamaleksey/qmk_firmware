@@ -34,7 +34,7 @@ enum keycodes {
 #define J_RSFT   RSFT_T(KC_J)
 #define K_RCMD   RCMD_T(KC_K)
 #define L_ROPT   ROPT_T(KC_L)
-#define SCN_RTCL RCTL_T(KC_SCLN)
+#define SCN_RCTL RCTL_T(KC_SCLN)
 
 // Layer switching / mod taps
 #define LWR_TAB LT(_LOWER, KC_TAB)
