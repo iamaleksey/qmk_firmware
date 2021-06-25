@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       XXXXXXX, KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,                                     KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSLS,
-      KC_GESC, A_LCTL , S_LOPT , D_LCMD , F_LSFT , KC_G   ,                                     KC_H   , J_RSFT , K_RCMD , L_ROPT ,SCN_RCLT, KC_QUOT,
+      KC_GESC, A_LCTL , S_LOPT , D_LCMD , F_LSFT , KC_G   ,                                     KC_H   , J_RSFT , K_RCMD , L_ROPT ,SCN_RCTL, KC_QUOT,
       XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH,CAPS_WRD,
                                  XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX
     ),
