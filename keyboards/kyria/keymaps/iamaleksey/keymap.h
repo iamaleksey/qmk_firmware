@@ -10,7 +10,8 @@ enum layers {
 };
 
 enum keycodes {
-    COLEMAK = SAFE_RANGE,
+    CAPS_WRD = SAFE_RANGE,
+    COLEMAK,
     QWERTY,
     WASD
 };
@@ -48,3 +49,13 @@ enum keycodes {
 // Prev tab / next tab
 #define PRV_TAB LCTL(LSFT(KC_TAB))
 #define NXT_TAB LCTL(KC_TAB)
+
+// Caps word
+bool caps_word_on;
+void caps_word_enable(void);
+void caps_word_disable(void);
+
+// Tap dances
+enum dances { _TD_Q, _TD_DOT };
+#define TD_Q   TD(_TD_Q)
+#define TD_DOT TD(_TD_DOT)
