@@ -89,20 +89,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Raise Layer: media and navigation
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * |      |      |      |      |      |      |                              |      |      |      |      |      |      |
+ * |      | Ins  | Prev | Play | Next |      |                              |PrvWrd|      |      |NxtWrd|      |      |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * |      |      | Prev | Play | Next |      |                              | Left | Down |  Up  | Right|      |      |
+ * |      | Ctl  | Opt  | Cmd  | Sft  | CpsLk|                              | Left | Down | Up   | Right|DelLne| Bspc |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
- * |      |      | Vol- | Mute | Vol+ |      |      |      |  |      |      | BOL  | PgDn | PgUp | EOL  |      |      |
+ * |      | Undo | Cut  | Copy | Paste| Redo |      |      |  |      |      |LneBeg| PgDn | PgUp |LneEnd| Del  | Bspc |
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
  *                      | Mute |      |      |      |      |  |      |      |      |      |      |
  *                      |      |      |      |      |      |  |      |      |      |      |      |
  *                      `----------------------------------'  `----------------------------------'
  */
     [_RAISE] = LAYOUT(
-      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
-      _______, _______, KC_VOLD, KC_MUTE, KC_VOLU, _______, _______, _______, _______, _______, BOL    , KC_PGDN, KC_PGUP, EOL    , _______, _______,
+      _______, KC_INS , KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     PRV_WRD, _______, _______, NXT_WRD, _______, _______,
+      _______, KC_LCTL, KC_LOPT, KC_LCMD, KC_LSFT, KC_CAPS,                                     KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, DEL_LNE, KC_BSPC,
+      _______, UNDO   , CUT    , COPY   , PASTE  , REDO   , _______, _______, _______, _______, LNE_BEG, KC_PGDN, KC_PGUP, LNE_END, KC_DEL , KC_BSPC,
                                  KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -144,8 +144,8 @@ void encoder_volume_up_down(bool clockwise) {
 }
 
 void encoder_history_redo_undo(bool clockwise) {
-    if (clockwise) { tap_code16(LCTL(KC_R)); }
-    else           { tap_code  (KC_U);       }
+    if (clockwise) { tap_code16(REDO); }
+    else           { tap_code16(UNDO); }
 }
 
 void encoder_zoom_in_out(bool clockwise) {
