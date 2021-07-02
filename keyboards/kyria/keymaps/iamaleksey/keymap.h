@@ -66,6 +66,7 @@ void caps_word_enable(void);
 void caps_word_disable(void);
 
 // Tap dances
-enum dances { _TD_Q, _TD_DOT };
-#define TD_Q   TD(_TD_Q)
+enum dances { _TD_H, _TD_M, _TD_DOT };
+#define TD_H   TD(_TD_H)
+#define TD_M   TD(_TD_M)
 #define TD_DOT TD(_TD_DOT)
