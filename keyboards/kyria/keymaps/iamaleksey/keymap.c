@@ -128,10 +128,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
 #ifdef ENCODER_ENABLE
 void encoder_scroll_down_up(bool clockwise) {
     if (clockwise) { tap_code(KC_PGDN); }
@@ -319,3 +315,53 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [_TD_M]   = ACTION_TAP_DANCE_DOUBLE(KC_M, KC_ESC),
     [_TD_DOT] = ACTION_TAP_DANCE_FN_ADVANCED(sentence_end, NULL, NULL)
 };
+
+//
+// RGB layer indication
+//
+
+const rgblight_segment_t PROGMEM qwerty_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_MAGENTA}, {10, 2, HSV_MAGENTA}
+);
+const rgblight_segment_t PROGMEM wasd_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 2, HSV_AZURE}, {10, 2, HSV_AZURE}
+);
+const rgblight_segment_t PROGMEM lower_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {8, 2, HSV_SPRINGGREEN}, {18, 2, HSV_SPRINGGREEN}
+);
+const rgblight_segment_t PROGMEM raise_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {8, 2, HSV_TEAL}, {18, 2, HSV_TEAL}
+);
+const rgblight_segment_t PROGMEM adjust_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {8, 2, HSV_GOLD}, {18, 2, HSV_GOLD}
+);
+const rgblight_segment_t PROGMEM capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {8, 2, HSV_RED}, {18, 2, HSV_RED}
+);
+
+const rgblight_segment_t* const PROGMEM rgbs[] = RGBLIGHT_LAYERS_LIST(
+    qwerty_rgb, wasd_rgb, lower_rgb, raise_rgb, adjust_rgb, capslock_rgb
+);
+
+void keyboard_post_init_user(void) {
+    rgblight_layers = rgbs;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _WASD));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
+    rgblight_set_layer_state(4, layer_state_cmp(state, _ADJUST));
+    return state;
+}
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(5, led_state.caps_lock);
+    return true;
+}
