@@ -5,9 +5,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  Base Layer: Colemak-DHm
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * |      |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   O  | \  | |
+ * |      |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : | \  | |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * | Esc ~| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |                              |   M  | N/Sft| E/Cmd| I/Opt|;:/Ctl| '  " |
+ * | Esc ~| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |                              |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
  * |      |   Z  |   X  |   C  |   D  |   V  |      |      |  |      |      |   K  |   H  | ,  < | .  > | /  ? |CpsWrd|
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
@@ -16,8 +16,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `----------------------------------'  `----------------------------------'
  */
     [_COLEMAK] = LAYOUT(
-      XXXXXXX, KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_O   , KC_BSLS,
-      KC_GESC, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     TD_M   , N_RSFT , E_RCMD , I_ROPT ,SCN_RCTL, KC_QUOT,
+      XXXXXXX, KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
+      KC_GESC, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     TD_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
       XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_K   , KC_H   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
                                  XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX
     ),
