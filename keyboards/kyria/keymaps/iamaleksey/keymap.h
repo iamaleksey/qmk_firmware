@@ -24,7 +24,7 @@ enum keycodes {
 #define   N_RSFT RSFT_T(KC_N)
 #define   E_RCMD RCMD_T(KC_E)
 #define   I_ROPT ROPT_T(KC_I)
-#define SCN_RCTL RCTL_T(KC_SCLN)
+#define   O_RCTL RCTL_T(KC_O)
 
 // Home row mods (QWERTY)
 #define   A_LCTL LCTL_T(KC_A)
