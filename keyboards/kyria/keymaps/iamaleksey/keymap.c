@@ -17,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_COLEMAK] = LAYOUT(
       XXXXXXX, KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
-      KC_GESC, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     TD_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
+      KC_GESC, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
       XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_K   , KC_H   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
                                  XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX
     ),
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_QWERTY] = LAYOUT(
       XXXXXXX, KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,                                     KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSLS,
-      KC_GESC, A_LCTL , S_LOPT , D_LCMD , F_LSFT , KC_G   ,                                     TD_H   , J_RSFT , K_RCMD , L_ROPT ,SCN_RCTL, KC_QUOT,
+      KC_GESC, A_LCTL , S_LOPT , D_LCMD , F_LSFT , KC_G   ,                                     KC_H   , J_RSFT , K_RCMD , L_ROPT ,SCN_RCTL, KC_QUOT,
       XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N   , KC_M   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
                                  XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX
     ),
@@ -311,8 +311,6 @@ void sentence_end(qk_tap_dance_state_t *state, void *user_data) {
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [_TD_H]   = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
-    [_TD_M]   = ACTION_TAP_DANCE_DOUBLE(KC_M, KC_ESC),
     [_TD_DOT] = ACTION_TAP_DANCE_FN_ADVANCED(sentence_end, NULL, NULL)
 };
 
