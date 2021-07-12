@@ -89,20 +89,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Raise Layer: media and navigation
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * |      | Ins  | Prev | Play | Next |      |                              |PrvWrd|      |      |NxtWrd|      |      |
+ * |      | Ins  | Prev | Play | Next |      |                              | PgUp |PrvWrd| Up   |NxtWrd|DelLne| Bspc |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * |      | Ctl  | Opt  | Cmd  | Sft  | CpsLk|                              | Left | Down | Up   | Right|DelLne| Bspc |
+ * |      | Ctl  | Opt  | Cmd  | Sft  | CpsLk|                              | PgDn | Left | Down | Right| Del  | Bspc |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
- * |      | Undo | Cut  | Copy | Paste| Redo |      |      |  |      |      |LneBeg| PgDn | PgUp |LneEnd| Del  | Bspc |
+ * |      | Undo | Cut  | Copy | Paste| Redo |      |      |  |      |      |      |LneBeg|      |LneEnd|      |      |
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
  *                      | Mute |      |      |      |      |  |      |      |      |      |      |
  *                      |      |      |      |      |      |  |      |      |      |      |      |
  *                      `----------------------------------'  `----------------------------------'
  */
     [_RAISE] = LAYOUT(
-      _______, KC_INS , KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     PRV_WRD, _______, _______, NXT_WRD, _______, _______,
-      _______, KC_LCTL, KC_LOPT, KC_LCMD, KC_LSFT, KC_CAPS,                                     KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, DEL_LNE, KC_BSPC,
-      _______, UNDO   , CUT    , COPY   , PASTE  , REDO   , _______, _______, _______, _______, LNE_BEG, KC_PGDN, KC_PGUP, LNE_END, KC_DEL , KC_BSPC,
+      _______, KC_INS , KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     KC_PGUP, PRV_WRD, KC_UP  , NXT_WRD, DEL_LNE, KC_BSPC,
+      _______, KC_LCTL, KC_LOPT, KC_LCMD, KC_LSFT, KC_CAPS,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL , KC_BSPC,
+      _______, UNDO   , CUT    , COPY   , PASTE  , REDO   , _______, _______, _______, _______, _______, LNE_BEG, _______, LNE_END, _______, _______,
                                  KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
