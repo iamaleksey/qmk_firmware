@@ -15,3 +15,7 @@ enum keycodes {
 bool caps_word_on;
 void caps_word_enable(void);
 void caps_word_disable(void);
+
+// Tap dances
+enum dances { _TD_DOT };
+#define TD_DOT TD(_TD_DOT)
