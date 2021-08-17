@@ -1,9 +1,15 @@
 #include QMK_KEYBOARD_H
 
-enum layers { _QWERTY, _COLEMAK, _LOWER };
-#define QWERTY  DF(_QWERTY)
+enum layers { _COLEMAK, _QWERTY, _SYMBOL, _EXTEND, _ADJUST };
+
+// Layer switching / mod taps
 #define COLEMAK DF(_COLEMAK)
-#define LOWER   MO(_LOWER)
+#define QWERTY  DF(_QWERTY)
+#define EXTEND  MO(_EXTEND)
+#define SYMBOL  MO(_SYMBOL)
+#define ADJUST  MO(_ADJUST)
+#define TAB_SYM LT(_SYMBOL, KC_TAB)
+#define BSP_EXT LT(_EXTEND, KC_BSPC)
 
 // Home row mods (Colemak-DHm)
 #define LCTL_A LCTL_T(KC_A)
@@ -24,3 +30,17 @@ enum layers { _QWERTY, _COLEMAK, _LOWER };
 #define RCMD_K RCMD_T(KC_K)
 #define ROPT_L ROPT_T(KC_L)
 #define CTL_SCLN RCTL_T(KC_SCLN)
+
+// Text navigation / manipulation
+#define LNE_BEG LCMD(KC_LEFT)
+#define LNE_END LCMD(KC_RGHT)
+#define DEL_LNE LCMD(KC_BSPC)
+#define PRV_WRD LOPT(KC_LEFT)
+#define NXT_WRD LOPT(KC_RGHT)
+
+// Undo / redo / cut / copy / paste
+#define UNDO  LCMD(KC_Z)
+#define REDO  LSFT(UNDO)
+#define CUT   LCMD(KC_X)
+#define COPY  LCMD(KC_C)
+#define PASTE LCMD(KC_V)
