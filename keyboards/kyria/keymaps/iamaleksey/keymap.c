@@ -23,27 +23,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 /*
- * Alt Base Layer: QWERTY
- *
- * ,-----------------------------------------.                              ,-----------------------------------------.
- * |      |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | \  | |
- * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * | Esc ~| A/Ctl| S/Opt| D/Cmd| F/Sft|   G  |                              |   H  | J/Sft| K/Cmd| L/Opt|;:/Ctl| '  " |
- * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
- * |      |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | ,  < | .  > | /  ? |CpsWrd|
- * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
- *                      |      |      | Tab/ | Space| Prev |  | Next | Bspc | Entr/|      |      |
- *                      |      |      | Lower|      | tab  |  | tab  |      | Raise|      |      |
- *                      `----------------------------------'  `----------------------------------'
- */
-    [_QWERTY] = LAYOUT(
-      XXXXXXX, KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,                                     KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSLS,
-      KC_GESC, A_LCTL , S_LOPT , D_LCMD , F_LSFT , KC_G   ,                                     KC_H   , J_RSFT , K_RCMD , L_ROPT ,SCN_RCTL, KC_QUOT,
-      XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_N   , KC_M   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
-                                 XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX
-    ),
-
-/*
  * Alt Base Layer: WASD for gaming (vanilla QWERTY without mod-taps)
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
@@ -110,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Adjust Layer: RGB and base layer switching, function keys
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * | Reset|  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  |  F10 |      |
+ * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  |  F10 | Reset|
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * |      | Togl | Sat+ | Hue+ | Bri+ | Mode+|                              |      |COLEMK|QWERTY| WASD |  F11 |      |
+ * |      | Togl | Sat+ | Hue+ | Bri+ | Mode+|                              |      |COLEMK| WASD |      |  F11 |      |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
  * |      | Togl | Sat- | Hue- | Bri- | Mode-|      |      |  |      |      |      |      |      |      |  F12 |      |
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
@@ -121,8 +100,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `----------------------------------'  `----------------------------------'
  */
     [_ADJUST] = LAYOUT(
-      RESET  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                                     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10, _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, COLEMAK, QWERTY , WASD   , KC_F11, _______,
+      _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                                     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10, RESET,
+      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, COLEMAK, WASD   , _______, KC_F11, _______,
       _______, RGB_TOG, RGB_SAD, RGB_HUD, RGB_VAD,RGB_RMOD, _______, _______, _______, _______, _______, _______, _______, _______, KC_F12, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     )
@@ -257,9 +236,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case COLEMAK:
         set_single_persistent_default_layer(_COLEMAK);
         return false;
-    case QWERTY:
-        set_single_persistent_default_layer(_QWERTY);
-        return false;
     case WASD:
         set_single_persistent_default_layer(_WASD);
         return false;
@@ -319,9 +295,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 // RGB layer indication
 //
 
-const rgblight_segment_t PROGMEM qwerty_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 2, HSV_MAGENTA}, {10, 2, HSV_MAGENTA}
-);
 const rgblight_segment_t PROGMEM wasd_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_AZURE}, {10, 2, HSV_AZURE}
 );
@@ -339,7 +312,7 @@ const rgblight_segment_t PROGMEM capslock_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t* const PROGMEM rgbs[] = RGBLIGHT_LAYERS_LIST(
-    qwerty_rgb, wasd_rgb, lower_rgb, raise_rgb, adjust_rgb, capslock_rgb
+    wasd_rgb, lower_rgb, raise_rgb, adjust_rgb, capslock_rgb
 );
 
 void keyboard_post_init_user(void) {
@@ -347,20 +320,19 @@ void keyboard_post_init_user(void) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
-    rgblight_set_layer_state(1, layer_state_cmp(state, _WASD));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _WASD));
     return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-    rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
-    rgblight_set_layer_state(4, layer_state_cmp(state, _ADJUST));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
     return state;
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(5, led_state.caps_lock);
+    rgblight_set_layer_state(4, led_state.caps_lock);
     return true;
 }
