@@ -1,46 +1,24 @@
 #include QMK_KEYBOARD_H
 
-enum layers {
-    _COLEMAK,
-    _QWERTY,
-    _WASD,
-    _LOWER,
-    _RAISE,
-    _ADJUST
-};
+enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
 
-enum keycodes {
-    CAPS_WRD = SAFE_RANGE,
-    COLEMAK,
-    QWERTY,
-    WASD
-};
+enum keycodes { CAPS_WRD = SAFE_RANGE, COLEMAK, WASD };
 
-// Home row mods (Colemak-DHm)
-#define   A_LCTL LCTL_T(KC_A)
-#define   R_LOPT LOPT_T(KC_R)
-#define   S_LCMD LCMD_T(KC_S)
-#define   T_LSFT LSFT_T(KC_T)
-#define   N_RSFT RSFT_T(KC_N)
-#define   E_RCMD RCMD_T(KC_E)
-#define   I_ROPT ROPT_T(KC_I)
-#define   O_RCTL RCTL_T(KC_O)
-
-// Home row mods (QWERTY)
-#define   A_LCTL LCTL_T(KC_A)
-#define   S_LOPT LOPT_T(KC_S)
-#define   D_LCMD LCMD_T(KC_D)
-#define   F_LSFT LSFT_T(KC_F)
-#define   J_RSFT RSFT_T(KC_J)
-#define   K_RCMD RCMD_T(KC_K)
-#define   L_ROPT ROPT_T(KC_L)
-#define SCN_RCTL RCTL_T(KC_SCLN)
-
-// Layer switching / mod taps
-#define LWR_TAB LT(_LOWER, KC_TAB)
-#define RSE_ENT LT(_RAISE, KC_ENT)
+// Layer switching
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
+#define LWR_TAB LT(_LOWER, KC_TAB)
+#define RSE_ENT LT(_RAISE, KC_ENT)
+
+// Home row mods
+#define A_LCTL LCTL_T(KC_A)
+#define R_LOPT LOPT_T(KC_R)
+#define S_LCMD LCMD_T(KC_S)
+#define T_LSFT LSFT_T(KC_T)
+#define N_RSFT RSFT_T(KC_N)
+#define E_RCMD RCMD_T(KC_E)
+#define I_ROPT ROPT_T(KC_I)
+#define O_RCTL RCTL_T(KC_O)
 
 // Text navigation / manipulation
 #define LNE_BEG LCMD(KC_LEFT)
@@ -57,8 +35,8 @@ enum keycodes {
 #define PASTE LCMD(KC_V)
 
 // Prev tab / next tab
-#define PRV_TAB LCTL(LSFT(KC_TAB))
 #define NXT_TAB LCTL(KC_TAB)
+#define PRV_TAB LSFT(NXT_TAB)
 
 // Caps word
 bool caps_word_on;
