@@ -7,7 +7,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                              ,-----------------------------------------.
  * |      |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : | \  | |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * | Esc  | A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |                              |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
+ * | Esc/↥| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |                              |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
  * |      |   Z  |   X  |   C  |   D  |   V  |      |      |  |      |      |   K  |   H  | ,  < | .  > | /  ? |CpsWrd|
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                              ,-----------------------------------------.
  * |      |   Й  |   Ц  |   У  |   К  |   Е  |                              |   Н  |   Г  |   Ш  |   Щ  |   З  | \  / |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
- * | Esc  | Ф/Ctl| Ы/Opt| В/Cmd| А/Sft|   П  |                              |   Р  | О/Sft| Л/Cmd| Д/Opt| Ж/Ctl|   Э  |
+ * | Esc/↥| Ф/Ctl| Ы/Opt| В/Cmd| А/Sft|   П  |                              |   Р  | О/Sft| Л/Cmd| Д/Opt| Ж/Ctl|   Э  |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
  * |      |   Я  |   Ч  |   С  |   М  |   И  |      |      |  |      |      |   Т  |   Ь  |   Б  |   Ю  | .  , |CpsWrd|
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
@@ -28,9 +28,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_COLEMAK] = LAYOUT(
       XXXXXXX, KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
-      KC_ESC , A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
+      ESC_RSE, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
       XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_K   , KC_H   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
-                                 XXXXXXX, XXXXXXX, LWR_TAB, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, RSE_ENT, XXXXXXX, XXXXXXX
+                                 XXXXXXX, XXXXXXX, TAB_LWR, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, ENT_RSE, XXXXXXX, XXXXXXX
     ),
 
 /*
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Adjust Layer: RGB and base layer switching, function keys
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  |  F10 | Reset|
+ * | Reset|  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  |  F10 |      |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
  * |      | Togl | Sat+ | Hue+ | Bri+ | Mode+|                              |      |COLEMK| WASD |      |  F11 |      |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `----------------------------------'  `----------------------------------'
  */
     [_ADJUST] = LAYOUT(
-      _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                                     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10, RESET,
+      RESET  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                                     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10, _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, COLEMAK, WASD   , _______, KC_F11, _______,
       _______, RGB_TOG, RGB_SAD, RGB_HUD, RGB_VAD,RGB_RMOD, _______, _______, _______, _______, _______, _______, _______, _______, KC_F12, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______

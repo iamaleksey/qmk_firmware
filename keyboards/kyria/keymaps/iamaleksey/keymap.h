@@ -7,8 +7,9 @@ enum keycodes { CAPS_WRD = SAFE_RANGE, COLEMAK, WASD };
 // Layer switching
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
-#define LWR_TAB LT(_LOWER, KC_TAB)
-#define RSE_ENT LT(_RAISE, KC_ENT)
+#define TAB_LWR LT(_LOWER, KC_TAB)
+#define ESC_RSE LT(_RAISE, KC_ESC)
+#define ENT_RSE LT(_RAISE, KC_ENT)
 
 // Home row mods
 #define A_LCTL LCTL_T(KC_A)
