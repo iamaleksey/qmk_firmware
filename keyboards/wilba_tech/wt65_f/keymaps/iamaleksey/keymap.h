@@ -4,7 +4,7 @@ enum layers { _COLEMAK, _SYMBOL, _EXTEND, _ADJUST };
 
 // Layer switching
 #define TAB_SYM LT(_SYMBOL, KC_TAB)
-#define ESC_EXT LT(_EXTEND, KC_BSPC)
+#define ESC_EXT LT(_EXTEND, KC_ESC)
 #define BSP_EXT LT(_EXTEND, KC_BSPC)
 
 // Home row mods
