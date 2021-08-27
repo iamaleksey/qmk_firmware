@@ -2,9 +2,11 @@
 
 enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
 
-enum keycodes { CAPS_WRD = SAFE_RANGE, COLEMAK, WASD };
+enum keycodes { CAPS_WRD = SAFE_RANGE };
 
 // Layer switching
+#define COLEMAK DF(_COLEMAK)
+#define WASD    DF(_WASD)
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
 #define TAB_LWR LT(_LOWER, KC_TAB)

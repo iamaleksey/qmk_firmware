@@ -231,7 +231,6 @@ void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     process_caps_word(keycode, record);
-
     switch (keycode) {
     case CAPS_WRD:
         // Toggle `caps_word_on`
@@ -244,14 +243,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         }
         break;
-    case COLEMAK:
-        set_single_persistent_default_layer(_COLEMAK);
-        return false;
-    case WASD:
-        set_single_persistent_default_layer(_WASD);
-        return false;
     }
-
     return true;
 }
 
