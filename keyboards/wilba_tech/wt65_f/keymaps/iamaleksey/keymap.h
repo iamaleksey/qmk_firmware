@@ -2,6 +2,8 @@
 
 enum layers { _COLEMAK, _SYMBOL, _EXTEND, _ADJUST };
 
+enum keycodes { CAPS_WRD = SAFE_RANGE };
+
 // Layer switching
 #define TAB_SYM LT(_SYMBOL, KC_TAB)
 #define ESC_EXT LT(_EXTEND, KC_ESC)
@@ -30,3 +32,12 @@ enum layers { _COLEMAK, _SYMBOL, _EXTEND, _ADJUST };
 #define CUT   LCMD(KC_X)
 #define COPY  LCMD(KC_C)
 #define PASTE LCMD(KC_V)
+
+// Caps word
+bool caps_word_on;
+void caps_word_enable(void);
+void caps_word_disable(void);
+
+// Tap dances
+enum dances { _TD_DOT };
+#define TD_DOT TD(_TD_DOT)
