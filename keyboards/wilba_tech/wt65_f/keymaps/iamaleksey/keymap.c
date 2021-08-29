@@ -98,6 +98,24 @@ void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
     }
 }
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    process_caps_word(keycode, record);
+    switch (keycode) {
+    case CAPS_WRD:
+        // Toggle `caps_word_on`
+        if (record->event.pressed) {
+            if (caps_word_on) {
+                caps_word_disable();
+            } else {
+                caps_word_enable();
+            }
+            return false;
+        }
+        break;
+    }
+    return true;
+}
+
 // Tap dances:
 // 1. Double Q to Escape
 // 2. Double dot to issue ". <one-shot-shift>" i.e. dot, space and capitalize next letter
