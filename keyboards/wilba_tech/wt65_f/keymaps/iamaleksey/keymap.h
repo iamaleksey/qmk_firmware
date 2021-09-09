@@ -2,8 +2,6 @@
 
 enum layers { _COLEMAK, _SYMBOL, _EXTEND, _ADJUST };
 
-enum keycodes { CAPS_WRD = SAFE_RANGE };
-
 // Layer switching
 #define TAB_SYM LT(_SYMBOL, KC_TAB)
 #define ESC_EXT LT(_EXTEND, KC_ESC)
@@ -37,6 +35,7 @@ enum keycodes { CAPS_WRD = SAFE_RANGE };
 bool caps_word_on;
 void caps_word_enable(void);
 void caps_word_disable(void);
+#define CAPS_WRD SAFE_RANGE
 
 // Tap dances
 enum dances { _TD_DOT };
