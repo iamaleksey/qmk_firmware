@@ -88,105 +88,101 @@ void caps_word_disable(void) {
 #define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
 
 void process_caps_word(uint16_t keycode, const keyrecord_t *record) {
-    // Update caps word state
-    if (caps_word_on) {
-        switch (keycode) {
-            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-                // Earlier return if this has not been considered tapped yet
-                if (record->tap.count == 0) { return; }
-                // Get the base tapping keycode of a mod- or layer-tap key
-                keycode = GET_TAP_KC(keycode);
-                break;
-            default:
-                break;
-        }
+    if (!caps_word_on) { return; }
 
-        switch (keycode) {
-            // Keycodes to shift
-            case KC_A ... KC_Z:
-                if (record->event.pressed) {
-                    caps_word_enable();
-                }
-            // Keycodes that enable caps word but shouldn't get shifted
-            case KC_MINS:
-            case KC_BSPC:
-            case KC_UNDS:
-            case KC_PIPE:
-            case CAPS_WRD:
-                // If chording mods, disable caps word
-                if (record->event.pressed && (get_mods() != MOD_LSFT) && (get_mods() != 0)) {
-                    caps_word_disable();
-                }
-                break;
-            default:
-                // Any other keycode should automatically disable caps
-                if (record->event.pressed) {
-                    caps_word_disable();
-                }
-                break;
-        }
+    // Update caps word state
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            // Earlier return if this has not been considered tapped yet
+            if (record->tap.count == 0) { return; }
+            // Get the base tapping keycode of a mod- or layer-tap key
+            keycode = GET_TAP_KC(keycode);
+            break;
+        default:
+            break;
+    }
+
+    switch (keycode) {
+        // Keycodes to shift
+        case KC_A ... KC_Z:
+            if (record->event.pressed) {
+                caps_word_enable();
+            }
+        // Keycodes that enable caps word but shouldn't get shifted
+        case KC_MINS:
+        case KC_BSPC:
+        case KC_UNDS:
+        case KC_PIPE:
+        case CAPS_WRD:
+            // If chording mods, disable caps word
+            if (record->event.pressed && (get_mods() != MOD_LSFT) && (get_mods() != 0)) {
+                caps_word_disable();
+            }
+            break;
+        default:
+            // Any other keycode should automatically disable caps
+            if (record->event.pressed) {
+                caps_word_disable();
+            }
+            break;
     }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     process_caps_word(keycode, record);
     switch (keycode) {
-    case CAPS_WRD:
-        // Toggle `caps_word_on`
-        if (record->event.pressed) {
-            if (caps_word_on) {
-                caps_word_disable();
-            } else {
-                caps_word_enable();
+        case CAPS_WRD:
+            // Toggle `caps_word_on`
+            if (record->event.pressed) {
+                if (caps_word_on) {
+                    caps_word_disable();
+                } else {
+                    caps_word_enable();
+                }
+                return false;
             }
-            return false;
-        }
-        break;
+            break;
     }
     return true;
 }
 
-// Tap dances:
-// 1. Double Q to Escape
-// 2. Double dot to issue ". <one-shot-shift>" i.e. dot, space and capitalize next letter
-
+// Double dot to issue ". <one-shot-shift>" i.e. dot, space and capitalize next letter
 void sentence_end(qk_tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
-    // Double tapping TD_DOT produces
-    // ". <one-shot-shift>" i.e. dot, space and capitalize next letter.
-    // This helps to quickly end a sentence and begin another one
-    // without having to hit shift.
-    case 2:
-        /* Check that Shift is inactive */
-        if (!(get_mods() & MOD_MASK_SHIFT)) {
-            tap_code(KC_SPC);
-            /* Internal code of OSM(MOD_LSFT) */
-            add_oneshot_mods(MOD_BIT(KC_LSHIFT));
+        // Double tapping TD_DOT produces
+        // ". <one-shot-shift>" i.e. dot, space and capitalize next letter.
+        // This helps to quickly end a sentence and begin another one
+        // without having to hit shift.
+        case 2:
+            /* Check that Shift is inactive */
+            if (!(get_mods() & MOD_MASK_SHIFT)) {
+                tap_code(KC_SPC);
+                /* Internal code of OSM(MOD_LSFT) */
+                add_oneshot_mods(MOD_BIT(KC_LSHIFT));
+            } else {
+                // send ">" (KC_DOT + shift → ">")
+                tap_code(KC_DOT);
+            }
+            break;
 
-        } else {
-            // send ">" (KC_DOT + shift → ">")
+        // Since `sentence_end` is called on each tap
+        // and not at the end of the tapping term,
+        // the third tap needs to cancel the effects
+        // of the double tap in order to get the expected
+        // three dots ellipsis.
+        case 3:
+            // remove the added space of the double tap case
+            tap_code(KC_BSPC);
+            // replace the space with a second dot
             tap_code(KC_DOT);
-        }
-        break;
+            // tap the third dot
+            tap_code(KC_DOT);
+            break;
 
-    // Since `sentence_end` is called on each tap
-    // and not at the end of the tapping term,
-    // the third tap needs to cancel the effects
-    // of the double tap in order to get the expected
-    // three dots ellipsis.
-    case 3:
-        // remove the added space of the double tap case
-        tap_code(KC_BSPC);
-        // replace the space with a second dot
-        tap_code(KC_DOT);
-        // tap the third dot
-        tap_code(KC_DOT);
-        break;
-
-    // send KC_DOT on every normal tap of TD_DOT
-    default:
-        tap_code(KC_DOT);
+        // send KC_DOT on every normal tap of TD_DOT
+        default:
+            tap_code(KC_DOT);
     }
 };
 
