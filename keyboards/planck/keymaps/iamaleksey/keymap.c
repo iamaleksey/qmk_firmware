@@ -178,7 +178,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-// Tap dances
+// Double dot to issue ". <one-shot-shift>" i.e. dot, space and capitalize next letter
 void sentence_end(qk_tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
         // Double tapping TD_DOT produces
