@@ -2,8 +2,6 @@
 
 enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
 
-enum keycodes { CAPS_WRD = SAFE_RANGE };
-
 // Layer switching
 #define COLEMAK DF(_COLEMAK)
 #define WASD    DF(_WASD)
@@ -41,6 +39,7 @@ enum keycodes { CAPS_WRD = SAFE_RANGE };
 bool caps_word_on;
 void caps_word_enable(void);
 void caps_word_disable(void);
+#define CAPS_WRD SAFE_RANGE
 
 // Tap dances
 enum dances { _TD_DOT };
