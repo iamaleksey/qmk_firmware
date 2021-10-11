@@ -87,3 +87,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #   define DISABLE_RGB_MATRIX_SOLID_SPLASH
 // #   define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
+
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
