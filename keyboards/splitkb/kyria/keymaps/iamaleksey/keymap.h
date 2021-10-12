@@ -46,7 +46,3 @@ bool caps_word_on;
 void caps_word_enable(void);
 void caps_word_disable(void);
 #define CAPS_WRD SAFE_RANGE
-
-// Tap dances
-enum dances { _TD_DOT };
-#define TD_DOT TD(_TD_DOT)
