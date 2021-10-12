@@ -16,6 +16,8 @@ enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
 #define R_LOPT LOPT_T(KC_R)
 #define S_LCMD LCMD_T(KC_S)
 #define T_LSFT LSFT_T(KC_T)
+#define D_HYPR HYPR_T(KC_D)
+#define H_HYPR HYPR_T(KC_H)
 #define N_RSFT RSFT_T(KC_N)
 #define E_RCMD RCMD_T(KC_E)
 #define I_ROPT ROPT_T(KC_I)

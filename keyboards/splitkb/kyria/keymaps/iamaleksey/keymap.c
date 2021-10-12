@@ -9,7 +9,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
  * | Esc/↥| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |                              |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
- * | Sft  |   Z  |   X  |   C  |   D  |   V  |      |      |  |      |      |   K  |   H  | ,  < | .  > | /  ? |CpsWrd|
+ * | Sft  |   Z  |   X  |   C  | D/Hpr|   V  |      |      |  |      |      |   K  | H/Hpr| ,  < | .  > | /  ? |CpsWrd|
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
  *                      |      |      | Tab/ | Space| Prev |  | Next | Bspc | Entr/|      |      |
  *                      |      |      | Lower|      | tab  |  | tab  |      | Raise|      |      |
@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
  * | Esc/↥| Ф/Ctl| Ы/Opt| В/Cmd| А/Sft|   П  |                              |   Р  | О/Sft| Л/Cmd| Д/Opt| Ж/Ctl|   Э  |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
- * | Sft  |   Я  |   Ч  |   С  |   М  |   И  |      |      |  |      |      |   Т  |   Ь  |   Б  |   Ю  | .  , |CpsWrd|
+ * | Sft  |   Я  |   Ч  |   С  | М/Hpr|   И  |      |      |  |      |      |   Т  | Ь/Hpr|   Б  |   Ю  | .  , |CpsWrd|
  * `--------------------+------+------+------+------+------|  |------+------+------+------+------+--------------------'
  *                      |      |      | Tab/ | Space| Prev |  | Next | Bspc | Entr/|      |      |
  *                      |      |      | Lower|      | tab  |  | tab  |      | Raise|      |      |
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT(
     KC_TAB , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
     ESC_RSE, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
-    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_K   , KC_H   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
+    KC_LSFT, KC_Z   , KC_X   , KC_C   , D_HYPR , KC_V   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_K   , H_HYPR , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
                                XXXXXXX, XXXXXXX, TAB_LWR, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, ENT_RSE, XXXXXXX, XXXXXXX
 ),
 
