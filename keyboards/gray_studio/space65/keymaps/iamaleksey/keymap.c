@@ -6,7 +6,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , KC_BSPC,          KC_HOME,
     KC_TAB , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_LBRC, KC_RBRC, KC_BSLS,          KC_PGUP,
     ESC_EXT, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   , KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT, KC_ENT ,                   KC_PGDN,
-    KC_LSFT, KC_X   , KC_C   , KC_D   , KC_V   , KC_Z   , KC_K   , KC_H   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,                   KC_UP  , KC_END ,
+    KC_LSFT, KC_X   , KC_C   , D_HYPR , KC_V   , KC_Z   , KC_K   , H_HYPR , KC_COMM, KC_DOT , KC_SLSH,CAPS_WRD,                   KC_UP  , KC_END ,
     KC_LCTL, KC_LOPT, TAB_SYM,                            KC_SPC ,                            BSP_EXT, KC_ROPT,          KC_LEFT, KC_DOWN, KC_RGHT
 ),
 
@@ -117,46 +117,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-
-// Double dot to issue ". <one-shot-shift>" i.e. dot, space and capitalize next letter
-void sentence_end(qk_tap_dance_state_t *state, void *user_data) {
-    switch (state->count) {
-        // Double tapping TD_DOT produces
-        // ". <one-shot-shift>" i.e. dot, space and capitalize next letter.
-        // This helps to quickly end a sentence and begin another one
-        // without having to hit shift.
-        case 2:
-            /* Check that Shift is inactive */
-            if (!(get_mods() & MOD_MASK_SHIFT)) {
-                tap_code(KC_SPC);
-                /* Internal code of OSM(MOD_LSFT) */
-                add_oneshot_mods(MOD_BIT(KC_LSHIFT));
-            } else {
-                // send ">" (KC_DOT + shift → ">")
-                tap_code(KC_DOT);
-            }
-            break;
-
-        // Since `sentence_end` is called on each tap
-        // and not at the end of the tapping term,
-        // the third tap needs to cancel the effects
-        // of the double tap in order to get the expected
-        // three dots ellipsis.
-        case 3:
-            // remove the added space of the double tap case
-            tap_code(KC_BSPC);
-            // replace the space with a second dot
-            tap_code(KC_DOT);
-            // tap the third dot
-            tap_code(KC_DOT);
-            break;
-
-        // send KC_DOT on every normal tap of TD_DOT
-        default:
-            tap_code(KC_DOT);
-    }
-};
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [_TD_DOT] = ACTION_TAP_DANCE_FN_ADVANCED(sentence_end, NULL, NULL)
-};
