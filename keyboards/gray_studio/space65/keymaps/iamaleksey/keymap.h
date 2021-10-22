@@ -12,6 +12,8 @@ enum layers { _COLEMAK, _SYMBOL, _EXTEND, _ADJUST };
 #define R_LOPT LOPT_T(KC_R)
 #define S_LCMD LCMD_T(KC_S)
 #define T_LSFT LSFT_T(KC_T)
+#define D_HYPR HYPR_T(KC_D)
+#define H_HYPR HYPR_T(KC_H)
 #define N_RSFT RSFT_T(KC_N)
 #define E_RCMD RCMD_T(KC_E)
 #define I_ROPT ROPT_T(KC_I)
@@ -36,7 +38,3 @@ bool caps_word_on;
 void caps_word_enable(void);
 void caps_word_disable(void);
 #define CAPS_WRD SAFE_RANGE
-
-// Tap dances
-enum dances { _TD_DOT };
-#define TD_DOT TD(_TD_DOT)
