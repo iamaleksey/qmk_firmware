@@ -162,7 +162,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     uint8_t layer = get_highest_layer(layer_state);
     if      (index == 0) {  left_encoder_update(layer, clockwise); }
     else if (index == 1) { right_encoder_update(layer, clockwise); }
-    return true;
+    return false;
 }
 #endif
 
