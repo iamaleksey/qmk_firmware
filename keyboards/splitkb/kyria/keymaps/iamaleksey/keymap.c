@@ -5,7 +5,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: Colemak-DHm
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * | Tab  |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : | \  | |
+ * |      |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  | ;  : | \  | |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
  * | Esc/↥| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |                              |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
@@ -16,7 +16,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `----------------------------------'  `----------------------------------'
  *
  * ,-----------------------------------------.                              ,-----------------------------------------.
- * | Tab  |   Й  |   Ц  |   У  |   К  |   Е  |                              |   Н  |   Г  |   Ш  |   Щ  |   З  | \  / |
+ * |      |   Й  |   Ц  |   У  |   К  |   Е  |                              |   Н  |   Г  |   Ш  |   Щ  |   З  | \  / |
  * |------+------+------+------+------+------|                              |------+------+------+------+------+------|
  * | Esc/↥| Ф/Ctl| Ы/Opt| В/Cmd| А/Sft|   П  |                              |   Р  | О/Sft| Л/Cmd| Д/Opt| Ж/Ctl|   Э  |
  * |------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+------|
@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      `----------------------------------'  `----------------------------------'
  */
 [_COLEMAK] = LAYOUT(
-    KC_TAB , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
+    XXXXXXX, KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                                     KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
     ESC_RSE, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   ,                                     KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
     KC_LSFT, KC_Z   , KC_X   , KC_C   , D_HYPR , KC_V   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_K   , H_HYPR , KC_COMM, KC_DOT , KC_SLSH,CAPS_WRD,
                                XXXXXXX, XXXXXXX, TAB_LWR, KC_SPC , PRV_TAB, NXT_TAB, KC_BSPC, ENT_RSE, XXXXXXX, XXXXXXX
