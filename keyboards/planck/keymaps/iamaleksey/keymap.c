@@ -4,7 +4,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Colemak-DHm
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  | ;  : | \  | |
+ * |      |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  | ;  : | \  | |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc/↥| A/Ctl| R/Opt| S/Cmd| T/Sft|   G  |   M  | N/Sft| E/Cmd| I/Opt| O/Ctl| '  " |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -14,7 +14,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_ortho_4x12(
-    KC_TAB , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
+    XXXXXXX, KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSLS,
     ESC_RSE, A_LCTL , R_LOPT , S_LCMD , T_LSFT , KC_G   , KC_M   , N_RSFT , E_RCMD , I_ROPT , O_RCTL , KC_QUOT,
     KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , KC_K   , KC_H   , KC_COMM, TD_DOT , KC_SLSH,CAPS_WRD,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TAB_LWR, KC_SPC , KC_BSPC, ENT_RSE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
