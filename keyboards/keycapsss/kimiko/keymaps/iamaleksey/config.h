@@ -22,10 +22,6 @@
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-#define OLED_FONT_H "keyboards/keycapsss/kimiko/keymaps/default/glcdfont.c"
-// #define OLED_FONT_WIDTH 5
-// #define OLED_FONT_HEIGHT 7
-
 #ifdef RGBLIGHT_ENABLE
 #   define RGBLIGHT_HUE_STEP 8
 #   define RGBLIGHT_SAT_STEP 8
@@ -44,7 +40,3 @@
 // #   define RGBLIGHT_EFFECT_RGB_TEST
 // #   define RGBLIGHT_EFFECT_ALTERNATING
 #endif
-
-// If you are using an Elite C rev3 on the slave side, uncomment the lines below:
-// #define SPLIT_USB_DETECT
-// #define NO_USB_STARTUP_CHECK
