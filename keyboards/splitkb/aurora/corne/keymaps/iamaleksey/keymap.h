@@ -1,0 +1,46 @@
+#pragma once
+
+#include QMK_KEYBOARD_H
+
+enum layers_ { COLEMAK_, WASD_, LOWER_, RAISE_, ADJUST_ };
+
+// Layer switching
+#define COLEMAK DF(COLEMAK_)
+#define WASD    DF(WASD_)
+#define LOWER   MO(LOWER_)
+#define RAISE   MO(RAISE_)
+#define TAB_LWR LT(LOWER_, KC_TAB)
+#define ESC_RSE LT(RAISE_, KC_ESC)
+#define ENT_RSE LT(RAISE_, KC_ENT)
+
+// Home row mods
+#define A_LCTL LCTL_T(KC_A)
+#define R_LOPT LOPT_T(KC_R)
+#define S_LCMD LCMD_T(KC_S)
+#define T_LSFT LSFT_T(KC_T)
+#define D_HYPR HYPR_T(KC_D)
+#define H_HYPR HYPR_T(KC_H)
+#define N_RSFT RSFT_T(KC_N)
+#define E_RCMD RCMD_T(KC_E)
+#define I_ROPT ROPT_T(KC_I)
+#define O_RCTL RCTL_T(KC_O)
+
+// Text navigation / manipulation
+#define LNE_BEG LCMD(KC_LEFT)
+#define LNE_END LCMD(KC_RGHT)
+#define DEL_LNE LCMD(KC_BSPC)
+#define PRV_WRD LOPT(KC_LEFT)
+#define NXT_WRD LOPT(KC_RGHT)
+
+// Undo / redo / cut / copy / paste
+#define UNDO  LCMD(KC_Z)
+#define REDO  LSFT(UNDO)
+#define CUT   LCMD(KC_X)
+#define COPY  LCMD(KC_C)
+#define PASTE LCMD(KC_V)
+
+// Caps word
+bool caps_word_on;
+void caps_word_enable(void);
+void caps_word_disable(void);
+#define CAPS_WRD SAFE_RANGE
