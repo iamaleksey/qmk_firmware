@@ -1,3 +1,5 @@
+#pragma once
+
 #include QMK_KEYBOARD_H
 
 enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
