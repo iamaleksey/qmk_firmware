@@ -32,9 +32,3 @@ enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
 #define DEL_LNE LCMD(KC_BSPC)
 #define PRV_WRD LOPT(KC_LEFT)
 #define NXT_WRD LOPT(KC_RGHT)
-
-// Caps word
-bool caps_word_on;
-void caps_word_enable(void);
-void caps_word_disable(void);
-#define CAPS_WRD SAFE_RANGE
