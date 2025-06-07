@@ -2,11 +2,9 @@
 
 #include QMK_KEYBOARD_H
 
-enum layers { _COLEMAK, _WASD, _LOWER, _RAISE, _ADJUST };
+enum layers { _BASE, _LOWER, _RAISE, _ADJUST };
 
 // Layer switching
-#define COLEMAK  DF(_COLEMAK)
-#define WASD     DF(_WASD)
 #define LOWER    MO(_LOWER)
 #define RAISE    MO(_RAISE)
 #define TAB_LWR  LT(_LOWER, KC_TAB)
